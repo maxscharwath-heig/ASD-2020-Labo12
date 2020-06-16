@@ -26,13 +26,13 @@ public:
 
 private:
    const std::size_t TAILLE;
-   std::map<std::string,bool> dejaAtteints;
+   std::map<std::string, Sommet> dejaAtteints;
 
    std::list<int> chemin;
 
    ListeSommets adjacent(const Sommet& v);
 
-   bool Marquer(Sommet& s);
+   bool Marquer(Sommet& s, Sommet& parent);
 
    void chaine();
 
