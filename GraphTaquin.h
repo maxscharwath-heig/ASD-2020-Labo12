@@ -8,8 +8,11 @@
 #include <cstdlib>
 #include <list>
 #include "Sommet.h"
+#include <map>
+#include <string>
 
-using ListeSommets = std::list<Sommet*>;
+using ListeSommets = std::list<Sommet>;
+using ListePtrSommet = std::list<Sommet*>;
 
 class GraphTaquin {
 
@@ -17,13 +20,21 @@ public:
 
    GraphTaquin(std::size_t taille) : TAILLE(taille) {};
 
-   ListeSommets adjacent(Sommet v) const;
-
    int V() const;
+
+   int evaluer(Sommet& depart);
 
 private:
    const std::size_t TAILLE;
-   ListeSommets dejaAtteints;
+   std::map<std::string,bool> dejaAtteints;
+
+   std::list<int> chemin;
+
+   ListeSommets adjacent(const Sommet& v);
+
+   bool Marquer(Sommet& s);
+
+   void chaine();
 
 };
 

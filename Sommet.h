@@ -4,16 +4,27 @@
 
 #ifndef LABO12_SOMMET_H
 #define LABO12_SOMMET_H
+#include <vector>
 #include <list>
+#include <ostream>
+#include <string>
 
 class Sommet {
 
-   std::list<int> etat;
+   friend std::ostream& operator<<(std::ostream& os, const Sommet& s);
+   friend bool operator==(const Sommet& rhs, const Sommet& lhs);
 
 public:
-   Sommet(std::list<int> etat) : etat(etat) {};
+   Sommet(const std::vector<int>& etat) : etat(etat) {};
 
-   std::list<Sommet> adjacent();
+   std::list<Sommet> adjacent() const;
+
+   std::string toString();
+
+private:
+   std::vector<int> etat;
+
+
 
 };
 
