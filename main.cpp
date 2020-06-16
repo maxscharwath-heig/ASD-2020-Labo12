@@ -1,6 +1,12 @@
 #include <iostream>
+#include "GraphTaquin.h"
+
+using namespace std;
 
 int main() {
-   std::cout << "Hello, World!" << std::endl;
+   GraphTaquin graph(3);
+
+   cout << graph.V() << endl;
+
    return 0;
 }
