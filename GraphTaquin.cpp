@@ -4,8 +4,6 @@
 
 using namespace std;
 
-const Sommet GraphTaquin::sommetFinal({0, 1, 2, 3, 4, 5, 6, 7, 8});
-
 int fact(int n) {
    return n == 0 or n == 1 ? 1 : n * fact(n - 1);
 }
@@ -19,7 +17,6 @@ ListeSommets GraphTaquin::adjacent(const Sommet& v) {
 }
 
 int GraphTaquin::evaluer() {
-
    //parcours
    int i = 0;
    queue<Sommet> Q{};
@@ -65,6 +62,7 @@ void GraphTaquin::chaine() {
    cout << chaine << endl;
 }
 
-GraphTaquin::GraphTaquin(const Sommet& depart) : depart(depart) {
+GraphTaquin::GraphTaquin(const Sommet& depart) : depart(depart), sommetFinal(depart) {
    taille = depart.getTaille();
+   sommetFinal = Sommet::fromTaille(taille);
 }

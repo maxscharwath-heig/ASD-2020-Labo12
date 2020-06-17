@@ -9,8 +9,13 @@ int main() {
       string etat;
       cout << "Entrez etat taquin: ";
       getline(std::cin, etat);
-      GraphTaquin graph(Sommet::fromString(etat));
-      cout << graph.evaluer() << endl;
+      try {
+         GraphTaquin graph(Sommet::fromString(etat));
+         cout << graph.evaluer() << endl;
+      } catch (invalid_argument e) {
+         cout << "sequence invalide" << endl;
+         cout << e.what() << endl;
+      }
    }
    return 0;
 }

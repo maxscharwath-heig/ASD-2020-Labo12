@@ -34,8 +34,7 @@ private:
 
    ListeSommets adjacent(const Sommet& v);
 
-   const static Sommet sommetFinal;
-
+   Sommet sommetFinal;
 };
 
 

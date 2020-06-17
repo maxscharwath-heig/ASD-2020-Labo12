@@ -22,6 +22,7 @@ public:
    int change();
 
    static Sommet fromString(const std::string &etat);
+   static Sommet fromTaille(std::size_t taille);
 
    std::size_t getTaille() const;
 

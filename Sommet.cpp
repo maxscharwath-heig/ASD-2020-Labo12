@@ -7,11 +7,20 @@
 #include <cmath>
 #include <iostream>
 #include <sstream>
+#include <vector>
 
 using namespace std;
 
-Sommet::Sommet(const vector<int> &etat) : etat(etat) {
+Sommet::Sommet(const vector<int>& etat) : etat(etat) {
    taille = sqrt(etat.size());
+
+   if (
+         etat.empty() ||
+         taille * taille != etat.size() ||
+         find(etat.begin(), etat.end(), 0) == etat.end()
+         ) {
+      throw invalid_argument("etat invalide");
+   }
 };
 
 std::size_t Sommet::getTaille() const {
@@ -79,11 +88,19 @@ int Sommet::change() {
 }
 
 Sommet Sommet::fromString(const string& etat) {
-   std::stringstream ss( etat );
+   stringstream ss(etat);
    int number;
-   std::vector<int> myNumbers;
-   while ( ss >> number )
-      myNumbers.push_back( number );
-   return Sommet(myNumbers);
+   vector<int> tab;
+   while (ss >> number) {
+      tab.push_back(number);
+   }
+   return Sommet(tab);
+}
+
+Sommet Sommet::fromTaille(std::size_t taille) {
+   vector<int> tab;
+   for (std::size_t i = 0; i < taille*taille; ++i)
+      tab.push_back(i);
+   return Sommet(tab);
 }
 
