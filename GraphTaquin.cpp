@@ -56,7 +56,7 @@ void GraphTaquin::chaine() {
    string chaine;
    if (dejaAtteints.count(w.toString()) <= 0) return;
    while (!(dejaAtteints.find(w.toString())->second == w)) {
-      chaine.insert(0, to_string(w.change()) + " ");
+      chaine.insert(0, to_string(w.posZero()) + " ");
       w = dejaAtteints.find(w.toString())->second;
    }
    cout << chaine << endl;

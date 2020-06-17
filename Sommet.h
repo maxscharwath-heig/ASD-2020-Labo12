@@ -19,7 +19,7 @@ public:
 
    std::string toString();
 
-   int change();
+   std::size_t posZero() const;
 
    static Sommet fromString(const std::string &etat);
    static Sommet fromTaille(std::size_t taille);
