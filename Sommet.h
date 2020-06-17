@@ -19,12 +19,16 @@ public:
 
    std::string toString();
 
-   int change(const Sommet& s);
+   int change();
+
+   static Sommet fromString(const std::string &etat);
+
+   std::size_t getTaille() const;
 
 private:
    std::vector<int> etat;
+   std::size_t taille;
 
 };
-
 
 #endif //LABO12_SOMMET_H

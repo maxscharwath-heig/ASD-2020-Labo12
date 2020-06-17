@@ -11,7 +11,7 @@ int fact(int n) {
 }
 
 int GraphTaquin::V() const {
-   return fact(TAILLE * TAILLE);
+   return fact(taille * taille);
 }
 
 ListeSommets GraphTaquin::adjacent(const Sommet& v) {
@@ -56,10 +56,15 @@ bool GraphTaquin::Marquer(Sommet& s, Sommet& parent) {
 
 void GraphTaquin::chaine() {
    Sommet w = sommetFinal;
+   string chaine;
    if (dejaAtteints.count(w.toString()) <= 0) return;
    while (!(dejaAtteints.find(w.toString())->second == w)) {
-      cout << w << endl;
+      chaine.insert(0, to_string(w.change()) + " ");
       w = dejaAtteints.find(w.toString())->second;
    }
-   cout << endl;
+   cout << chaine << endl;
+}
+
+GraphTaquin::GraphTaquin(const Sommet& depart) : depart(depart) {
+   taille = depart.getTaille();
 }

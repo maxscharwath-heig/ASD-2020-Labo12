@@ -6,14 +6,20 @@
 #include <algorithm>
 #include <cmath>
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
-Sommet::Sommet(const vector<int> &etat) : etat(etat) {};
+Sommet::Sommet(const vector<int> &etat) : etat(etat) {
+   taille = sqrt(etat.size());
+};
+
+std::size_t Sommet::getTaille() const {
+   return taille;
+}
 
 list<Sommet> Sommet::adjacent() const {
    list<Sommet> voisins;
-   int taille = sqrt(etat.size());
    int posZero = distance(etat.begin(), find(etat.begin(), etat.end(), 0));
    int x = posZero % taille;
    int y = posZero / taille;
@@ -41,10 +47,9 @@ list<Sommet> Sommet::adjacent() const {
 }
 
 std::ostream& operator<<(ostream& os, const Sommet& s) {
-   int taille = sqrt(s.etat.size());
    for (int i = 0; i < s.etat.size(); ++i) {
       os << s.etat.at(i) << ' ';
-      if (i % taille == taille - 1) {
+      if (i % s.taille == s.taille - 1) {
          os << endl;
       }
    }
@@ -64,12 +69,21 @@ string Sommet::toString() {
    return s;
 }
 
-int Sommet::change(const Sommet& s) {
+int Sommet::change() {
    for (size_t i = 0; i < etat.size(); ++i) {
-      if (etat[i] != s.etat[i]) {
-         return s.etat[i] ? s.etat[i] : etat[i];
+      if (etat[i] == 0) {
+         return i;
       }
    }
    return 0;
+}
+
+Sommet Sommet::fromString(const string& etat) {
+   std::stringstream ss( etat );
+   int number;
+   std::vector<int> myNumbers;
+   while ( ss >> number )
+      myNumbers.push_back( number );
+   return Sommet(myNumbers);
 }
 

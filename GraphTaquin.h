@@ -18,22 +18,19 @@ class GraphTaquin {
 
 public:
 
-   GraphTaquin(std::size_t taille, const Sommet& depart) : TAILLE(taille), depart
-   (depart) {};
+   GraphTaquin(const Sommet& depart);
 
    int V() const;
 
    int evaluer();
 
 private:
-   const std::size_t TAILLE;
+   std::size_t taille;
    std::map<std::string, Sommet> dejaAtteints;
    bool Marquer(Sommet& s, Sommet& parent);
    void chaine();
 
    Sommet depart;
-
-   std::list<int> chemin;
 
    ListeSommets adjacent(const Sommet& v);
 
