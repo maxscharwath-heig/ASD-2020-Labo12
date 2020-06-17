@@ -9,6 +9,8 @@
 
 using namespace std;
 
+Sommet::Sommet(const vector<int> &etat) : etat(etat) {};
+
 list<Sommet> Sommet::adjacent() const {
    list<Sommet> voisins;
    int taille = sqrt(etat.size());
@@ -70,3 +72,4 @@ int Sommet::change(const Sommet& s) {
    }
    return 0;
 }
+

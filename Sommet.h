@@ -1,7 +1,3 @@
-//
-// Created by AnneSo on 16.06.2020.
-//
-
 #ifndef LABO12_SOMMET_H
 #define LABO12_SOMMET_H
 
@@ -17,7 +13,7 @@ class Sommet {
    friend bool operator==(const Sommet& rhs, const Sommet& lhs);
 
 public:
-   Sommet(const std::vector<int>& etat) : etat(etat) {};
+   Sommet(const std::vector<int>& etat);
 
    std::list<Sommet> adjacent() const;
 
@@ -27,7 +23,6 @@ public:
 
 private:
    std::vector<int> etat;
-
 
 };
 
