@@ -4,16 +4,12 @@
 
 using namespace std;
 
-int fact(int n) {
+size_t fact(size_t n) {
    return n == 0 or n == 1 ? 1 : n * fact(n - 1);
 }
 
-int GraphTaquin::V() const {
+size_t GraphTaquin::V() const {
    return fact(taille * taille);
-}
-
-ListeSommets GraphTaquin::adjacent(const Sommet& v) {
-   return v.adjacent();
 }
 
 int GraphTaquin::evaluer() {

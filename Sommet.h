@@ -19,7 +19,7 @@ public:
 
    std::size_t posZero() const;
 
-   std::size_t getId();
+   std::size_t getId() const;
 
    static Sommet fromString(const std::string &etat);
    static Sommet fromTaille(std::size_t taille);

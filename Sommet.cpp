@@ -14,11 +14,12 @@ using namespace std;
 Sommet::Sommet(const vector<int>& etat) : etat(etat) {
    taille = sqrt(etat.size());
 
-   std::size_t seed = etat.size();
-   for(auto& i : etat) {
-      seed ^= i + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+   size_t h = 0;
+   for(auto& i : etat) { //hash version java string.hashcode
+      h = (h << 5) - h + i;
    }
-   id = seed;
+   cout << h << endl;
+   id = h;
 
 
 };
@@ -30,8 +31,8 @@ std::size_t Sommet::getTaille() const {
 list<Sommet> Sommet::adjacent() const {
    list<Sommet> voisins;
    size_t pos = posZero();
-   int x = pos % taille;
-   int y = pos / taille;
+   size_t x = pos % taille;
+   size_t y = pos / taille;
    if (x + 1 < taille) {
       vector<int> tmp = etat;
       swap(tmp.at(pos), tmp.at((x + 1) + y * taille));
@@ -99,7 +100,7 @@ Sommet Sommet::fromTaille(std::size_t taille) {
    return Sommet(tab);
 }
 
-std::size_t Sommet::getId() {
+std::size_t Sommet::getId() const {
    return id;
 }
 

@@ -20,7 +20,7 @@ public:
 
    GraphTaquin(const Sommet& depart);
 
-   int V() const;
+   std::size_t V() const;
 
    int evaluer();
 
@@ -31,8 +31,6 @@ private:
    void chaine();
 
    Sommet depart;
-
-   ListeSommets adjacent(const Sommet& v);
 
    Sommet sommetFinal;
 };
