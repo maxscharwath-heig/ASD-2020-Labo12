@@ -11,29 +11,21 @@
 #include <map>
 #include <string>
 
-using ListeSommets = std::list<Sommet>;
-using ListePtrSommet = std::list<Sommet*>;
-
 class GraphTaquin {
 
 public:
 
-   GraphTaquin(const Sommet& depart);
+   explicit GraphTaquin(const Sommet& depart);
 
-   int V() const;
-
-   int evaluer();
+   void evaluer();
 
 private:
    std::size_t taille;
    std::map<std::size_t, Sommet> dejaAtteints;
-   bool Marquer(Sommet& s, Sommet& parent);
+   bool marquer(Sommet& s, Sommet& parent);
    void chaine();
 
    Sommet depart;
-
-   ListeSommets adjacent(const Sommet& v);
-
    Sommet sommetFinal;
 };
 

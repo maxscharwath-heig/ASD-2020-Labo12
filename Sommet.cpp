@@ -14,17 +14,25 @@ using namespace std;
 Sommet::Sommet(const vector<int>& etat) : etat(etat) {
    taille = sqrt(etat.size());
 
-   std::size_t seed = etat.size();
-   for(auto& i : etat) {
-      seed ^= i + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+   //hash  inspiré de string.HashCode de Java
+   size_t h = 0;
+   for (int i : etat) {
+      h = h*31 + i;
    }
-   id = seed;
-
-
+   id = h;
 };
 
-std::size_t Sommet::getTaille() const {
+
+bool operator==(const Sommet& rhs, const Sommet& lhs) {
+   return rhs.id == lhs.id;
+}
+
+size_t Sommet::getTaille() const {
    return taille;
+}
+
+std::size_t Sommet::getId() const {
+   return id;
 }
 
 list<Sommet> Sommet::adjacent() const {
@@ -55,20 +63,6 @@ list<Sommet> Sommet::adjacent() const {
    return voisins;
 }
 
-std::ostream& operator<<(ostream& os, const Sommet& s) {
-   for (int i = 0; i < s.etat.size(); ++i) {
-      os << s.etat.at(i) << ' ';
-      if (i % s.taille == s.taille - 1) {
-         os << endl;
-      }
-   }
-   return os;
-}
-
-bool operator==(const Sommet& rhs, const Sommet& lhs) {
-   return rhs.etat == lhs.etat;
-}
-
 size_t Sommet::posZero() const{
    return distance(etat.begin(), find(etat.begin(), etat.end(), 0));
 }
@@ -97,9 +91,5 @@ Sommet Sommet::fromTaille(std::size_t taille) {
    for (std::size_t i = 0; i < taille*taille; ++i)
       tab.push_back(i);
    return Sommet(tab);
-}
-
-std::size_t Sommet::getId() {
-   return id;
 }
 

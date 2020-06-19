@@ -8,20 +8,19 @@
 
 class Sommet {
 
-   friend std::ostream& operator<<(std::ostream& os, const Sommet& s);
-
    friend bool operator==(const Sommet& rhs, const Sommet& lhs);
 
 public:
-   Sommet(const std::vector<int>& etat);
+   Sommet(const std::vector<int>& etat = {});
 
    std::list<Sommet> adjacent() const;
 
    std::size_t posZero() const;
 
-   std::size_t getId();
+   std::size_t getId() const;
 
-   static Sommet fromString(const std::string &etat);
+   static Sommet fromString(const std::string& etat);
+
    static Sommet fromTaille(std::size_t taille);
 
    std::size_t getTaille() const;

@@ -8,20 +8,10 @@ int fact(int n) {
    return n == 0 or n == 1 ? 1 : n * fact(n - 1);
 }
 
-int GraphTaquin::V() const {
-   return fact(taille * taille);
-}
-
-ListeSommets GraphTaquin::adjacent(const Sommet& v) {
-   return v.adjacent();
-}
-
-int GraphTaquin::evaluer() {
-   //parcours
-   int i = 0;
+void GraphTaquin::evaluer() {
    queue<Sommet> Q{};
    Q.push(depart);
-   Marquer(depart, depart);
+   marquer(depart, depart);
 
    while (!Q.empty()) {
       Sommet v = Q.front();
@@ -29,21 +19,19 @@ int GraphTaquin::evaluer() {
       //action sur v
       if (v == sommetFinal) {
          chaine();
-         return i;
+         return;
       }
 
       for (auto w : v.adjacent()) {
-         if (!Marquer(w, v)) {
+         if (!marquer(w, v)) {
             Q.push(w);
-            ++i;
          }
       }
    }
-
-   return i;
+   cout << "Aucune reponse possible" << endl;
 }
 
-bool GraphTaquin::Marquer(Sommet& s, Sommet& parent) {
+bool GraphTaquin::marquer(Sommet& s, Sommet& parent) {
    if (dejaAtteints.count(s.getId()) > 0) {
       return true;
    }
@@ -62,7 +50,7 @@ void GraphTaquin::chaine() {
    cout << chaine << endl;
 }
 
-GraphTaquin::GraphTaquin(const Sommet& depart) : depart(depart), sommetFinal(depart) {
+GraphTaquin::GraphTaquin(const Sommet& depart): depart(depart) {
    taille = depart.getTaille();
    sommetFinal = Sommet::fromTaille(taille);
 }
