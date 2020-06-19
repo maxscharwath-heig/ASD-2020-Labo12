@@ -44,20 +44,20 @@ int GraphTaquin::evaluer() {
 }
 
 bool GraphTaquin::Marquer(Sommet& s, Sommet& parent) {
-   if (dejaAtteints.count(s.toString()) > 0) {
+   if (dejaAtteints.count(s.getId()) > 0) {
       return true;
    }
-   dejaAtteints.insert(pair<string, Sommet>(s.toString(), parent));
+   dejaAtteints.insert(pair<std::size_t, Sommet>(s.getId(), parent));
    return false;
 }
 
 void GraphTaquin::chaine() {
    Sommet w = sommetFinal;
    string chaine;
-   if (dejaAtteints.count(w.toString()) <= 0) return;
-   while (!(dejaAtteints.find(w.toString())->second == w)) {
+   if (dejaAtteints.count(w.getId()) <= 0) return;
+   while (!(dejaAtteints.find(w.getId())->second == w)) {
       chaine.insert(0, to_string(w.posZero()) + " ");
-      w = dejaAtteints.find(w.toString())->second;
+      w = dejaAtteints.find(w.getId())->second;
    }
    cout << chaine << endl;
 }

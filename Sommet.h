@@ -17,9 +17,9 @@ public:
 
    std::list<Sommet> adjacent() const;
 
-   std::string toString();
-
    std::size_t posZero() const;
+
+   std::size_t getId();
 
    static Sommet fromString(const std::string &etat);
    static Sommet fromTaille(std::size_t taille);
@@ -29,6 +29,7 @@ public:
 private:
    std::vector<int> etat;
    std::size_t taille;
+   std::size_t id;
 
 };
 

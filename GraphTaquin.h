@@ -26,7 +26,7 @@ public:
 
 private:
    std::size_t taille;
-   std::map<std::string, Sommet> dejaAtteints;
+   std::map<std::size_t, Sommet> dejaAtteints;
    bool Marquer(Sommet& s, Sommet& parent);
    void chaine();
 
