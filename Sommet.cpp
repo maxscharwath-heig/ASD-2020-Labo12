@@ -1,7 +1,3 @@
-//
-// Created by AnneSo on 16.06.2020.
-//
-
 #include "Sommet.h"
 #include <algorithm>
 #include <cmath>
@@ -13,7 +9,6 @@ using namespace std;
 
 Sommet::Sommet(const vector<int>& etat) : etat(etat) {
    taille = sqrt(etat.size());
-
    //hash  inspiré de string.HashCode de Java,
    // il y a surement des erreurs mais marche bien pour un taquin de 3x3
    size_t h = 0;
@@ -69,7 +64,6 @@ size_t Sommet::posZero() const{
 }
 
 Sommet Sommet::fromString(const string& etat) {
-
    stringstream ss(etat);
    int number;
    vector<int> tab;
