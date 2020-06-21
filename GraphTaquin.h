@@ -26,7 +26,7 @@ private:
    void chaine();
 
    Sommet depart;
-   Sommet sommetFinal;
+   Sommet final;
 };
 
 

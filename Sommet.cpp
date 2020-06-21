@@ -14,10 +14,11 @@ using namespace std;
 Sommet::Sommet(const vector<int>& etat) : etat(etat) {
    taille = sqrt(etat.size());
 
-   //hash  inspiré de string.HashCode de Java
+   //hash  inspiré de string.HashCode de Java,
+   // il y a surement des erreurs mais marche bien pour un taquin de 3x3
    size_t h = 0;
    for (int i : etat) {
-      h = h*31 + i;
+      h = (h*31) + i;
    }
    id = h;
 };
@@ -31,7 +32,7 @@ size_t Sommet::getTaille() const {
    return taille;
 }
 
-std::size_t Sommet::getId() const {
+size_t Sommet::getId() const {
    return id;
 }
 
@@ -86,9 +87,9 @@ Sommet Sommet::fromString(const string& etat) {
    return Sommet(tab);
 }
 
-Sommet Sommet::fromTaille(std::size_t taille) {
+Sommet Sommet::fromTaille(size_t taille) {
    vector<int> tab;
-   for (std::size_t i = 0; i < taille*taille; ++i)
+   for (size_t i = 0; i < taille*taille; ++i)
       tab.push_back(i);
    return Sommet(tab);
 }
